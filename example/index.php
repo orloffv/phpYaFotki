@@ -1,5 +1,5 @@
 <?
-include('phpYfotki/Yfotki.php');
+include('../source/Yfotki.php');
 
 $fotki = new yFotki(array('login' => 'vitaly.orloff', 'cache' => TRUE));
 
