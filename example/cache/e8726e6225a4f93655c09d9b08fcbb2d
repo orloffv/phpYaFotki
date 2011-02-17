@@ -1,0 +1,376 @@
+{
+  "updated": "2011-02-14T20:19:27Z", 
+  "links": {
+    "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/albums/", 
+    "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/albums/"
+  }, 
+  "author": "vitaly-orloff", 
+  "title": "vitaly-orloff на Яндекс.Фотках", 
+  "entries": [
+    {
+      "edited": "2011-02-14T20:19:27Z", 
+      "updated": "2011-02-14T20:19:27Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143273/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143273/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143273/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/143273/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143273/photos.ymapsml/"
+      }, 
+      "title": "MeToYou", 
+      "author": "vitaly-orloff", 
+      "protected": true, 
+      "published": "2011-01-06T08:41:00Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:143273", 
+      "imageCount": 26
+    }, 
+    {
+      "edited": "2011-02-07T20:53:08Z", 
+      "updated": "2011-02-07T20:53:08Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120923/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120923/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120923/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/120923/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120923/photos.ymapsml/"
+      }, 
+      "title": "случайное", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-23T06:47:14Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:120923", 
+      "imageCount": 21
+    }, 
+    {
+      "edited": "2011-02-01T19:25:16Z", 
+      "updated": "2011-02-01T19:25:16Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120757/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120757/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120757/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/120757/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120757/photos.ymapsml/"
+      }, 
+      "title": "Somebody", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-22T11:38:29Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:120757", 
+      "imageCount": 37
+    }, 
+    {
+      "edited": "2011-01-27T20:36:08Z", 
+      "updated": "2011-01-27T20:36:08Z", 
+      "links": {
+        "album": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120764/", 
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/119926/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/119926/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/119926/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/119926/photos/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/119926/photos.ymapsml/"
+      }, 
+      "title": "never sleeps", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-17T21:12:21Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:119926", 
+      "imageCount": 54
+    }, 
+    {
+      "edited": "2011-01-27T20:33:47Z", 
+      "updated": "2011-01-27T20:33:47Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120764/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120764/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120764/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/120764/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120764/photos.ymapsml/"
+      }, 
+      "title": "Moscow", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-22T11:51:54Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:120764", 
+      "imageCount": 0
+    }, 
+    {
+      "edited": "2011-01-27T10:19:05Z", 
+      "updated": "2011-01-27T10:19:05Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/146968/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/146968/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/146968/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/146968/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/146968/photos.ymapsml/"
+      }, 
+      "title": "citycat", 
+      "author": "vitaly-orloff", 
+      "published": "2011-01-26T21:25:41Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:146968", 
+      "imageCount": 13
+    }, 
+    {
+      "edited": "2011-01-22T22:11:02Z", 
+      "updated": "2011-01-22T22:11:02Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/136938/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/136938/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/136938/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/136938/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/136938/photos.ymapsml/"
+      }, 
+      "title": "sport", 
+      "author": "vitaly-orloff", 
+      "published": "2010-12-05T19:35:06Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:136938", 
+      "imageCount": 53
+    }, 
+    {
+      "edited": "2011-01-15T17:05:04Z", 
+      "updated": "2011-01-15T17:05:04Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114445/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114445/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114445/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/114445/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114445/photos.ymapsml/"
+      }, 
+      "title": "Неразобранное", 
+      "author": "vitaly-orloff", 
+      "protected": true, 
+      "published": "2010-08-18T10:51:04Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:114445", 
+      "imageCount": 26
+    }, 
+    {
+      "edited": "2011-01-15T14:43:21Z", 
+      "updated": "2011-01-15T14:43:21Z", 
+      "links": {
+        "album": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/", 
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/144919/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/144919/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/144919/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/144919/photos/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/144919/photos.ymapsml/"
+      }, 
+      "title": "Grebnevo", 
+      "author": "vitaly-orloff", 
+      "published": "2011-01-15T14:19:49Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:144919", 
+      "imageCount": 17
+    }, 
+    {
+      "edited": "2011-01-15T14:43:21Z", 
+      "updated": "2011-01-15T14:43:21Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/121457/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/photos.ymapsml/"
+      }, 
+      "title": "city", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-25T16:12:18Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:121457", 
+      "imageCount": 0
+    }, 
+    {
+      "edited": "2011-01-15T14:30:45Z", 
+      "updated": "2011-01-15T14:30:45Z", 
+      "links": {
+        "album": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/", 
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121458/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121458/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/121458/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121458/photos/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121458/photos.ymapsml/"
+      }, 
+      "title": "Fryazino", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-25T16:13:13Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:121458", 
+      "imageCount": 3
+    }, 
+    {
+      "edited": "2011-01-10T19:27:41Z", 
+      "updated": "2011-01-10T19:27:41Z", 
+      "links": {
+        "album": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/", 
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122514/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122514/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/122514/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122514/photos/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122514/photos.ymapsml/"
+      }, 
+      "title": "Kazan", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-30T16:17:27Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:122514", 
+      "imageCount": 23
+    }, 
+    {
+      "edited": "2011-01-09T21:35:48Z", 
+      "updated": "2011-01-09T21:35:48Z", 
+      "links": {
+        "album": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/121457/", 
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127869/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127869/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/127869/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127869/photos/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127869/photos.ymapsml/"
+      }, 
+      "title": "St. Petersburg", 
+      "author": "vitaly-orloff", 
+      "published": "2010-10-25T19:36:30Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:127869", 
+      "imageCount": 11
+    }, 
+    {
+      "edited": "2011-01-09T21:24:33Z", 
+      "updated": "2011-01-09T21:24:33Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127867/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127867/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127867/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/127867/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/127867/photos.ymapsml/"
+      }, 
+      "title": "всякое", 
+      "author": "vitaly-orloff", 
+      "published": "2010-10-25T19:20:08Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:127867", 
+      "imageCount": 7
+    }, 
+    {
+      "edited": "2011-01-06T18:15:11Z", 
+      "updated": "2011-01-06T18:15:11Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143277/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143277/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143277/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/143277/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/143277/photos.ymapsml/"
+      }, 
+      "title": "NY", 
+      "author": "vitaly-orloff", 
+      "protected": true, 
+      "published": "2011-01-06T08:48:58Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:143277", 
+      "imageCount": 27
+    }, 
+    {
+      "edited": "2011-01-06T08:41:49Z", 
+      "updated": "2011-01-06T08:41:49Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/141426/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/141426/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/141426/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/141426/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/141426/photos.ymapsml/"
+      }, 
+      "title": "New Year mood", 
+      "author": "vitaly-orloff", 
+      "published": "2010-12-25T16:47:29Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:141426", 
+      "imageCount": 28
+    }, 
+    {
+      "edited": "2010-11-27T09:56:29Z", 
+      "updated": "2010-11-27T09:56:29Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/135065/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/135065/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/135065/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/135065/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/135065/photos.ymapsml/"
+      }, 
+      "title": "family", 
+      "author": "vitaly-orloff", 
+      "protected": true, 
+      "published": "2010-11-27T09:22:47Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:135065", 
+      "imageCount": 9
+    }, 
+    {
+      "edited": "2010-10-29T18:38:43Z", 
+      "updated": "2010-10-29T18:38:43Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120754/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120754/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120754/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/120754/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120754/photos.ymapsml/"
+      }, 
+      "title": "Animals", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-22T11:37:45Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:120754", 
+      "imageCount": 9
+    }, 
+    {
+      "edited": "2010-10-02T09:10:43Z", 
+      "updated": "2010-10-02T09:10:43Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122799/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122799/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122799/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/122799/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122799/photos.ymapsml/"
+      }, 
+      "title": "Kazan-people", 
+      "author": "vitaly-orloff", 
+      "protected": true, 
+      "published": "2010-10-02T08:25:34Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:122799", 
+      "imageCount": 15
+    }, 
+    {
+      "edited": "2010-09-30T19:46:51Z", 
+      "updated": "2010-09-30T19:46:51Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122569/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122569/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122569/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/122569/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/122569/photos.ymapsml/"
+      }, 
+      "title": "конкурсы", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-30T19:39:09Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:122569", 
+      "imageCount": 2
+    }, 
+    {
+      "edited": "2010-09-25T20:02:51Z", 
+      "updated": "2010-09-25T20:02:51Z", 
+      "links": {
+        "album": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120764/", 
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120763/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120763/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/120763/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120763/photos/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/120763/photos.ymapsml/"
+      }, 
+      "title": "daily", 
+      "author": "vitaly-orloff", 
+      "published": "2010-09-22T11:46:56Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:120763", 
+      "imageCount": 7
+    }, 
+    {
+      "edited": "2010-09-22T11:53:26Z", 
+      "updated": "2010-09-22T11:53:26Z", 
+      "links": {
+        "edit": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114792/", 
+        "photos": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114792/photos/", 
+        "self": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114792/", 
+        "alternate": "http://fotki.yandex.ru/users/vitaly-orloff/album/114792/", 
+        "ymapsml": "http://api-fotki.yandex.ru/api/users/vitaly-orloff/album/114792/photos.ymapsml/"
+      }, 
+      "title": "work", 
+      "author": "vitaly-orloff", 
+      "protected": true, 
+      "published": "2010-08-20T11:06:01Z", 
+      "id": "urn:yandex:fotki:vitaly-orloff:album:114792", 
+      "imageCount": 30
+    }
+  ], 
+  "id": "urn:yandex:fotki:vitaly-orloff:albums"
+}
