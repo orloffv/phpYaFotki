@@ -4,11 +4,25 @@ Class yFotki {
     public $login;
     public $url = 'http://api-fotki.yandex.ru/api/users/';
     public $sizes = array();
+    public $cache = FALSE;
+    public $cache_path = 'cache/';
 
     function __construct($settings)
     {
-        $this->login = $settings['login'];
-        $this->sizes = $settings['sizes'];
+        if (isset($settings['sizes']))
+        {
+        	$this->sizes = $settings['sizes'];
+        }
+        
+        if (isset($settings['login']))
+        {
+        	$this->login = $settings['login'];
+        }
+        
+        if (isset($settings['cache']))
+        {
+        	$this->cache = $settings['cache'];
+        }
     }
 
     protected function query($url, $limit='')
@@ -19,8 +33,17 @@ Class yFotki {
         {
             $url.= '&limit=' . $limit;
         }
-
-        $result_json = file_get_contents($url);
+        
+        if ($this->cache AND ($result_json = $this->get_cache($url)) === FALSE)
+        {
+        	$result_json = file_get_contents($url);
+        
+        	if ($this->cache)
+        	{
+        		$this->set_cache($url, $result_json);
+        	}
+        }
+        
         $result = json_decode($result_json);
         return $result;
     }
@@ -106,5 +129,30 @@ Class yFotki {
 
         return $albums;
     }
-
+	
+	protected function get_cache($key)
+	{
+		$file = $this->cache_path.md5($key);
+		
+		if (is_file($file))
+		{
+			return file_get_contents($key);
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+	
+	protected function set_cache($key, $value)
+	{
+		$file = $this->cache_path.md5($key);
+		
+		if (is_dir( ! $this->cache_path))
+		{
+			mkdir($_SERVER["DOCUMENT_ROOT"].'/'.$this->cache_path, 0755, TRUE);
+		}
+		
+		file_put_contents($file, $value);
+	}
 }
