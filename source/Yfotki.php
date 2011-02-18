@@ -6,6 +6,7 @@ Class yFotki {
     public $sizes = array();
     public $cache = FALSE;
     public $cache_path = 'cache/';
+    public $cache_lifetime = 3600;
 
     function __construct($settings)
     {
@@ -36,7 +37,7 @@ Class yFotki {
         
         if ($this->cache AND ($result_json = $this->get_cache($url)) === FALSE)
         {
-        	$result_json = file_get_contents($url);
+        	$result_json = json_decode(file_get_contents($url));
         
         	if ($this->cache)
         	{
@@ -44,8 +45,7 @@ Class yFotki {
         	}
         }
         
-        $result = json_decode($result_json);
-        return $result;
+        return $result_json;
     }
 
     protected function get_photos($sizes, $what = 'photos/', $limit = '')
@@ -136,7 +136,18 @@ Class yFotki {
 		
 		if (is_file($file))
 		{
-			return file_get_contents($key);
+			$result_cache_json = file_get_contents($file);
+			$result_cache_array = json_decode($result_cache_json);
+
+			if ($result_cache_array->expiry < time())
+			{
+                unlink($file);
+                return FALSE;
+			}
+			else
+			{
+                return $result_cache_array->data;
+			}
 		}
 		else
 		{
@@ -153,6 +164,11 @@ Class yFotki {
 			$mkdir = mkdir(realpath('./').'/'.$this->cache_path, 0755, TRUE);
 		}
 		
-		file_put_contents($file, $value);
+		$save_cache_array = array(
+		                  'expiry' => time() + $this->cache_lifetime,
+		                  'data' => $value,
+		);
+		
+		file_put_contents($file, json_encode($save_cache_array));
 	}
 }
