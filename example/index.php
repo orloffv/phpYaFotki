@@ -5,14 +5,6 @@ $fotki = new yFotki(array('login' => 'vitaly.orloff', 'cache' => TRUE));
 
 $albums = $fotki->get_albums();
 
-//$count = count($albums);
-//if ($count>10)
-{
-    //for($i=15; $i<$count; $i++)
-    {
-      //  unset($albums[$i]);
-    }    
-}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -55,7 +47,7 @@ $albums = $fotki->get_albums();
 			
 			#header {height:154px; width:100%; position: relative; padding-top: 10px;}
 			
-			#logo {background-image: url(img/logo.png); width:410px; height:115px; background-position: -51px -50px; background-repeat: no-repeat;}
+			#logo {cursor:pointer; background-image: url(img/logo.png); width:410px; height:115px; background-position: -51px -50px; background-repeat: no-repeat;}
 			
 			#title { width: 800px; top: 100px; position: absolute; visibility: visible; }
 			
@@ -99,7 +91,15 @@ $albums = $fotki->get_albums();
 			height: 37px;
 			position: relative;
 		}	
-			
+		
+		#js_gallery{display: none;}
+		#albums_grid{display: none;}
+		
+		
+		#albums_grid .album {cursor:pointer; background: #EDF2D5; padding:10px; float: left; margin: 10px; width:150px; height:170px; position: relative; text-align: center;}
+		#albums_grid .album div {width:100%; position: relative;}
+		#albums_grid .album img {}
+		#albums_grid .album:hover{background: #95969a;}
 			
 		--></style>
 	</head>
@@ -107,7 +107,7 @@ $albums = $fotki->get_albums();
 	<body>
 		<div id="outline">
 			<div id="header">
-				<div id="logo"></div>
+				<a href="index.php"><div id="logo"></div></a>
 				<div id="menu">
 				    <ul>
 				    <div id="makeMeScrollable"> 
@@ -126,14 +126,18 @@ $albums = $fotki->get_albums();
 				<div class="line"></div>
 			</div>
 			<div id="content">
-				<div id="galleria"></div>
-				<p id="nav">
-                    <a id="g_prev" href="#">Назад</a> 
-                    <a id="g_next" href="#">Вперед</a> 
-                    <a id="g_play" href="#">Play</a> 
-                    <a id="g_pause" href="#">Пауза</a> 
-                    <a id="g_fullscreen" href="#">На весь экран</a>
-                </p>
+				<div id="js_gallery">
+    				<div id="galleria"></div>
+    				<p id="nav">
+                        <a id="g_prev" href="#">Назад</a> 
+                        <a id="g_next" href="#">Вперед</a> 
+                        <a id="g_play" href="#">Play</a> 
+                        <a id="g_pause" href="#">Пауза</a> 
+                        <a id="g_fullscreen" href="#">На весь экран</a>
+                    </p>
+                </div>
+                <div id="albums_grid">
+                </div>
 			</div>
 			<div id="footer">
 				<span class="copy">&copy; <a href="mailto:orloff.v@gmail.com">orloff.v@gmail.com</a></span>
@@ -161,13 +165,34 @@ $albums = $fotki->get_albums();
             
             $("div#makeMeScrollable").smoothDivScroll("moveToElement", "number", number);
         }
+        else
+        {
+            draw_albums_grid();
+        }
     });
+    
+    function draw_albums_grid()
+    {
+        $.get('ajax.php', function(data) {
+            var $div = $("#albums_grid");
+            $div.show();
+            $.each(data, function(index, value) {
+                $div.append('<div album_id="'+value.id+'" class="album"><div>'+value.title+'</div><img src="'+value.image+'"></div>');
+            });
+            
+        }, "json");
+    }
     
     
     function show_gallery(id)
     {
         document.location.hash = "id="+id;
-    
+        $("#js_gallery").show();
+        $("#albums_grid").hide();
+        
+        $("#menu a").removeClass('active');
+        $("#menu_"+id).addClass('active');
+        
         $.get('ajax.php?id='+id, function(data) {
                 $('#galleria').galleria({
                     data_source: data, // add the fotki.yandex data
@@ -201,8 +226,13 @@ $albums = $fotki->get_albums();
     }
     
     $("#menu a").click(function(){
-        $("#menu a").removeClass('active');
-        $(this).addClass('active');
+        var id= $(this).attr('album_id');
+        show_gallery(id);
+                
+        return false;
+    });
+    
+    $("#albums_grid .album").live('click', function() {
         var id= $(this).attr('album_id');
         show_gallery(id);
                 
