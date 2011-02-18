@@ -1,17 +1,17 @@
 # PHP class для работы с [Яндекс.Фотки](http://fotki.yandex.ru), version 0.1 (release)
 
-Рабочая [демка](http://orloffv.ru/fotki/)
+[Демка](http://orloffv.ru/fotki/)
 
 Возможности:
 ------------
 
-получение последних фотографий `get_allPhotos`
+получение последних фотографий `get_all_photos`
 
 получение всех альбомов у пользователя `get_albums`
 
-получение фотографий в альбоме `get_albumPhotos($album_id)`
+получение фотографий в альбоме `get_album_photos($album_id)`
 
-получение всех альбомов с обложками new! `get_albumsWithPreview`
+получение всех альбомов с обложками new! `get_albums_with_preview`
 
 прослойка кэширования
 

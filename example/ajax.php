@@ -7,7 +7,7 @@ $json = array();
 
 if ( ! empty($_GET['id']))
 {
-    $photos = $fotki->get_albumPhotos($_GET['id']);    
+    $photos = $fotki->get_album_photos($_GET['id']);    
     
     foreach ($photos as $key => $photo)
     {
@@ -18,7 +18,7 @@ if ( ! empty($_GET['id']))
 }
 else
 {
-    $json = $fotki->get_albumsWithPreview('S');
+    $json = $fotki->get_albums_with_preview('S');
 }
 
 echo json_encode($json);
