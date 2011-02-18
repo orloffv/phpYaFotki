@@ -116,7 +116,7 @@ $albums = $fotki->get_albums();
                 		<div class="scrollWrapper"> 
                 			<div class="scrollableArea"> 		
             					<?php foreach ($albums as $album):?>
-                					<li><a album_id="<?=$album['id']?>" href=#><?=$album['title']?></a></li>
+                					<li><a album_id="<?=$album['id']?>" id="menu_<?=$album['id']?>" href=#><?=$album['title']?></a></li>
             					<?php endforeach;?>
             				</div> 
                 		</div> 
@@ -150,13 +150,17 @@ $albums = $fotki->get_albums();
         hash = document.location.hash;
         temp_hash = hash.split('=');
         
+        $("div#makeMeScrollable").smoothDivScroll();
+        
         if (temp_hash[0] == '#id')
         {
             show_gallery(temp_hash[1]);
             $("#menu a[album_id='"+temp_hash[1]+"']").addClass('active');
+            
+            number = $("#menu a[album_id='"+temp_hash[1]+"']").index("#menu li a")+1;
+            
+            $("div#makeMeScrollable").smoothDivScroll("moveToElement", "number", number);
         }
-        
-        $("div#makeMeScrollable").smoothDivScroll({});
     });
     
     
@@ -167,7 +171,7 @@ $albums = $fotki->get_albums();
         $.get('ajax.php?id='+id, function(data) {
                 $('#galleria').galleria({
                     data_source: data, // add the fotki.yandex data
-                    preload:5,
+                    preload:1,
                     extend: function() {
                         var gallery = this; // save the scope
                         $('#nav a').click(function(e) {
