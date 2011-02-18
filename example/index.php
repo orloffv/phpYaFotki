@@ -5,12 +5,12 @@ $fotki = new yFotki(array('login' => 'vitaly.orloff', 'cache' => TRUE));
 
 $albums = $fotki->get_albums();
 
-$count = count($albums);
-if ($count>10)
+//$count = count($albums);
+//if ($count>10)
 {
-    for($i=10; $i<$count; $i++)
+    //for($i=15; $i<$count; $i++)
     {
-        unset($albums[$i]);
+      //  unset($albums[$i]);
     }    
 }
 ?>
@@ -23,7 +23,11 @@ if ($count>10)
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script language="javascript" type="text/javascript" src="http://quickribbon.com/ribbon/2011/02/4fa2603264f9864b5b328e3e25067ea0.js"></script>
+		<link rel="Stylesheet" type="text/css" href="http://www.smoothdivscroll.com/css/smoothDivScroll.css" /> 
+		<script src="http://www.smoothdivscroll.com/js/jquery.ui.widget.js" type="text/javascript"></script> 
+	    <script src="http://www.smoothdivscroll.com/js/jquery.smoothDivScroll-1.1-min.js" type="text/javascript"></script>
 		<script src="src/galleria.js"></script>
+		
 		<title>Orloff Vitaly Gallery</title>
 		<style type="text/css" media="screen"><!--
 			*{margin:0;padding:0}
@@ -55,7 +59,7 @@ if ($count>10)
 			
 			#title { width: 800px; top: 100px; position: absolute; visibility: visible; }
 			
-			#menu {width: 100%; height: 41px;}
+			#menu {width: 100%; height: 37px; overflow: hidden;}
 			
 			.line{height: 8px; background-color: #CFCFFC;}
 			
@@ -66,8 +70,8 @@ if ($count>10)
 			h4 { font-weight: bold; text-align: center; margin: 1.33em 0; }
 			a { color: #666; text-decoration: underline; }
 			
-			#menu ul {display: block;}
-			#menu li {display: inline;}
+			#menu ul {display: block; list-style: none; height: 37px; overflow: hidden;}
+			#menu li {float: left;}
 			#menu a {background:#EDF2D5; display: block;float: left;font: bold 15px Arial, Helvetica, sans-serif;color: #95969A;text-decoration: none;padding: 10px;margin: 0 8px 0 0;}
 			#menu a.active {color: #EDF2D5; background: #FDCB08;}
 			#menu a:hover { color: #edf2d5; background: #95969a; }
@@ -78,7 +82,7 @@ if ($count>10)
 			#content{position: absolute;
           overflow: auto;
           width: 100%;
-          top: 174px;
+          top: 170px;
           left: 0;
           bottom: 30px;
           background: white;}
@@ -89,8 +93,13 @@ if ($count>10)
           bottom: 0;}
 			#footer .copy {text-align: right; float: right; padding: 7px;}
 			
-			#caption { width: 260px; left: 48px; top: 318px; position: absolute; visibility: visible; }
-			#text { left: 336px; top: 318px; position: absolute; width: 400px; visibility: visible; margin-top: 10px; }
+		#makeMeScrollable
+		{
+			width:100%;
+			height: 37px;
+			position: relative;
+		}	
+			
 			
 		--></style>
 	</head>
@@ -100,22 +109,30 @@ if ($count>10)
 			<div id="header">
 				<div id="logo"></div>
 				<div id="menu">
-					<ul>
-					<?php foreach ($albums as $album):?>
-    					<li><a album_id="<?=$album['id']?>" href=#><?=$album['title']?></a></li>
-					<?php endforeach;?>
-					</ul>
+				    <ul>
+				    <div id="makeMeScrollable"> 
+                		<div class="scrollingHotSpotLeft"></div> 
+                		<div class="scrollingHotSpotRight"></div> 
+                		<div class="scrollWrapper"> 
+                			<div class="scrollableArea"> 		
+            					<?php foreach ($albums as $album):?>
+                					<li><a album_id="<?=$album['id']?>" href=#><?=$album['title']?></a></li>
+            					<?php endforeach;?>
+            				</div> 
+                		</div> 
+                	</div> 
+                	</ul>	
 				</div>
 				<div class="line"></div>
 			</div>
 			<div id="content">
 				<div id="galleria"></div>
 				<p id="nav">
-                    <a id="g_prev" href="#">Previous</a> 
-                    <a id="g_next" href="#">Next</a> 
+                    <a id="g_prev" href="#">Назад</a> 
+                    <a id="g_next" href="#">Вперед</a> 
                     <a id="g_play" href="#">Play</a> 
-                    <a id="g_pause" href="#">Pause</a> 
-                    <a id="g_fullscreen" href="#">Fullscreen</a>
+                    <a id="g_pause" href="#">Пауза</a> 
+                    <a id="g_fullscreen" href="#">На весь экран</a>
                 </p>
 			</div>
 			<div id="footer">
@@ -139,6 +156,7 @@ if ($count>10)
             $("#menu a[album_id='"+temp_hash[1]+"']").addClass('active');
         }
         
+        $("div#makeMeScrollable").smoothDivScroll({});
     });
     
     
