@@ -1,7 +1,7 @@
 <?
-include('Yfotki.php');
+include('source/YaFotki.php');
 
-$fotki = new yFotki(array('login' => 'vitaly.orloff', 'sizes' => array('XXS')));
+$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'sizes' => array('XXS')));
 
 var_dump($fotki->get_albums());
 
