@@ -1,5 +1,5 @@
 <?
-Class yFotki {
+Class YaFotki {
 
     public $login;
     public $url = 'http://api-fotki.yandex.ru/api/users/';

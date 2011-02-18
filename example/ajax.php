@@ -1,7 +1,7 @@
 <?
-include('../source/Yfotki.php');
+include('../source/YaFotki.php');
 
-$fotki = new yFotki(array('login' => 'vitaly.orloff', 'sizes' => array('XXS', 'XL'), 'cache' => TRUE));
+$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'sizes' => array('XXS', 'XL'), 'cache' => TRUE));
 
 $json = array();
 
