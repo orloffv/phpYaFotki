@@ -21,7 +21,8 @@ if ($count>10)
 
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script language="javascript" type="text/javascript" src="http://quickribbon.com/ribbon/2011/02/4fa2603264f9864b5b328e3e25067ea0.js"></script>
 		<script src="src/galleria.js"></script>
 		<title>Orloff Vitaly Gallery</title>
 		<style type="text/css" media="screen"><!--

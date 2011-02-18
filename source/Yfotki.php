@@ -132,7 +132,7 @@ Class yFotki {
 	
 	protected function get_cache($key)
 	{
-		$file = $this->cache_path.md5($key);
+		$file = $this->cache_path.md5($key).'.json';
 		
 		if (is_file($file))
 		{
@@ -146,11 +146,11 @@ Class yFotki {
 	
 	protected function set_cache($key, $value)
 	{
-		$file = $this->cache_path.md5($key);
+		$file = $this->cache_path.md5($key).'.json';
 		
-		if (is_dir( ! $this->cache_path))
+		if ( ! is_dir($this->cache_path))
 		{
-			mkdir($_SERVER["DOCUMENT_ROOT"].'/'.$this->cache_path, 0755, TRUE);
+			$mkdir = mkdir(realpath('./').'/'.$this->cache_path, 0755, TRUE);
 		}
 		
 		file_put_contents($file, $value);
