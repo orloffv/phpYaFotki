@@ -6,7 +6,7 @@ Class YaFotki {
     public $sizes = array();
     public $cache = FALSE;
     public $cache_path = 'cache/';
-    public $cache_lifetime = 3600;
+    public $cache_lifetime = 360000;
 
     function __construct($settings)
     {

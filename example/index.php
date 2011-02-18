@@ -14,7 +14,6 @@ $albums = $fotki->get_albums();
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script language="javascript" type="text/javascript" src="http://quickribbon.com/ribbon/2011/02/4fa2603264f9864b5b328e3e25067ea0.js"></script>
 		<link rel="Stylesheet" type="text/css" href="http://www.smoothdivscroll.com/css/smoothDivScroll.css" /> 
 		<script src="http://www.smoothdivscroll.com/js/jquery.ui.widget.js" type="text/javascript"></script> 
 	    <script src="http://www.smoothdivscroll.com/js/jquery.smoothDivScroll-1.1-min.js" type="text/javascript"></script>
@@ -105,6 +104,7 @@ $albums = $fotki->get_albums();
 	</head>
 
 	<body>
+	    <a href="https://github.com/orloffv/phpYaFotki" target="_blank"><img src="http://quickribbon.com/ribbon/2011/02/4fa2603264f9864b5b328e3e25067ea0.gif" border="0" width="150" height="150" style="position:absolute; right:0px; top:0px; margin:0px; padding:0px"></a>
 		<div id="outline">
 			<div id="header">
 				<a href="index.php"><div id="logo"></div></a>
@@ -240,3 +240,20 @@ $albums = $fotki->get_albums();
     });
     
 </script>
+
+<!-- Yandex.Metrika counter -->
+<div style="display:none;"><script type="text/javascript">
+(function(w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter4553848 = new Ya.Metrika(4553848);
+             yaCounter4553848.clickmap(true);
+             yaCounter4553848.trackLinks(true);
+        
+        } catch(e) { }
+    });
+})(window, 'yandex_metrika_callbacks');
+</script></div>
+<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+<noscript><div style="position:absolute"><img src="//mc.yandex.ru/watch/4553848" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
