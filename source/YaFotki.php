@@ -13,6 +13,7 @@ Class YaFotki {
     public $cache = FALSE;
     public $cache_path = 'cache/';
     public $cache_lifetime = 360000;
+    public $categor_title_separator = ' / ';
 
     function __construct($settings)
     {
@@ -48,8 +49,8 @@ Class YaFotki {
             $url.= '&limit=' . $limit;
         }
 
-        if ($this->cache AND ($result_json = $this->get_cache($url)) === FALSE)
-        {
+        if (($this->cache AND ($result_json = $this->get_cache($url)) === FALSE) OR ! $this->cache)
+        {   
             $result_json = json_decode(file_get_contents($url));
 
             if ($this->cache)
@@ -78,7 +79,7 @@ Class YaFotki {
      * 
      * @param array $sizes
      * @param stirng $what путь к нужным данным в api после login
-     * пример: http://api-fotki.yandex.ru/api/users/vitaly.orloff/{album/12345/photos/}
+     * пример: http://api-fotki.yandex.ru/api/users/username/{album/12345/photos/}
      * @param int $limit
      * @return array 
      */
@@ -136,7 +137,14 @@ Class YaFotki {
      * array(
      *  'id' => 12345,
      *  'title' => 'blahblah',
+     *  'title_path' => 'category_title / blahblah',
      *  'update' => 2009-01-27T11:57:32Z,
+     *  'parents' => array(
+     *          0 => array(
+     *              'title' => 'album_name',
+     *              'album_id' => id,
+     *          ),
+     *      ),
      * );
      * 
      * @return array
@@ -146,33 +154,110 @@ Class YaFotki {
         $result = $this->query($this->url . $this->login . '/albums/');
 
         $return_items = array();
-
+            
+        $albums_parents = array(); 
+        
         $items = $result->entries;
 
         foreach ($items as $item)
         {
-            if ((isset($item->protected) AND $item->protected) OR !$item->imageCount)
+            $id_album = $this->get_album_id($item->links->alternate);
+            
+            $parent_id = 0;
+            
+            if (isset($item->links->album))
             {
-                continue;
+                $parent_id = $this->get_album_id($item->links->album);
+            }
+            
+            $albums_parents[$id_album] = array(
+                'title' => $item->title,
+                'parent_id' => $parent_id,
+            );
+            
+            if ( ! isset($item->protected) AND $item->imageCount)
+            {
+
+                $return_items[] = array(
+                    'id' => $id_album,
+                    'title' => $item->title,
+                    'update' => $item->updated
+                );
+            }
+        }
+        
+        foreach($return_items as &$album)
+        {
+            $album['parents'] = $this->get_parents($album['id'], $albums_parents);
+            
+            $album['title_path'] = '';
+
+            if (count($album['parents']))
+            {       
+                foreach ($album['parents'] as $parent)
+                {
+                    $album['title_path'] .= $parent['title'].$this->categor_title_separator;
+                }
+
+
             }
 
-            $id_album = NULL;
-
-            $link = $item->links->alternate;
-
-            $link = explode('/', $link);
-
-            $id_album = $link[count($link) - 2];
-
-            $return_items[] = array(
-                'id' => $id_album,
-                'title' => $item->title,
-                'update' => $item->updated
-            );
+            $album['title_path'] .= $album['title'];
         }
-
+        
         return $return_items;
     }
+    
+    /**
+     * Возвращает массив родителей альбомов,
+     * Рекурсивная функция.
+     * 
+     * @param int $album_id
+     * @param array $albums_parents
+     * @return array 
+     */
+    protected function get_parents($album_id, $albums_parents)
+    {
+        $parents = array();
+        
+        if ($albums_parents[$album_id]['parent_id'] == 0)
+        {
+            
+            return $parents;
+        }
+        else
+        {            
+            $parents[] = array(
+                            'title' => $albums_parents[$albums_parents[$album_id]['parent_id']]['title'],
+                            'album_id' => $albums_parents[$album_id]['parent_id'],
+                            );
+           
+            $parents = array_merge($parents, $this->get_parents($albums_parents[$album_id]['parent_id'], $albums_parents));
+        }
+        
+        return $parents;
+    }
+
+    /**
+     * Возвращает id альбома из url
+     * 
+     * пример вызова:
+     * get_album_id('http://api-fotki.yandex.ru/api/users/username/album/123131/');
+     *
+     * @param string $url
+     * @return int 
+     */
+    protected function get_album_id($url)
+    {
+        $id_album = NULL;
+
+        $url_temp = explode('/', $url);
+
+        $id_album = $url_temp[count($url_temp) - 2];
+        
+        return $id_album;
+    }
+
 
     /**
      * Возвращает альбомы с обложками

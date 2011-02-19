@@ -4,6 +4,7 @@ include('../source/YaFotki.php');
 $fotki = new YaFotki(array('login' => 'vitaly.orloff', 'cache' => TRUE));
 
 $albums = $fotki->get_albums();
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -80,7 +81,7 @@ $albums = $fotki->get_albums();
             #albums_grid{display: none;}
 
 
-            #albums_grid .album {cursor:pointer; background: #EDF2D5; padding:10px; float: left; margin: 10px; width:150px; height:170px; position: relative; text-align: center;}
+            #albums_grid .album {cursor:pointer; background: #EDF2D5; padding:10px 0; float: left; margin: 10px; width:170px; height:170px; position: relative; text-align: center;}
             #albums_grid .album div {width:100%; position: relative; font: Arial; font-size: 16px; margin: -6px 0 6px 0; color: #95969A;}
             #albums_grid .album img {}
             #albums_grid .album:hover{background: #95969a;}
@@ -104,7 +105,7 @@ $albums = $fotki->get_albums();
                             <div class="scrollWrapper"> 
                                 <div class="scrollableArea"> 		
                                     <?php foreach ($albums as $album): ?>
-                                        <li><a album_id="<?= $album['id'] ?>" id="menu_<?= $album['id'] ?>" href=#><?= $album['title'] ?></a></li>
+                                        <li><a album_id="<?= $album['id'] ?>" id="menu_<?= $album['id'] ?>" href=#><?= $album['title_path'] ?></a></li>
                                     <?php endforeach; ?>
                                 </div> 
                             </div> 
@@ -165,7 +166,7 @@ $albums = $fotki->get_albums();
             var $div = $("#albums_grid");
             $div.show();
             $.each(data, function(index, value) {
-                $div.append('<div album_id="'+value.id+'" class="album"><div>'+value.title+'</div><img src="'+value.image+'"></div>');
+                $div.append('<div album_id="'+value.id+'" class="album"><div>'+value.title_path+'</div><img src="'+value.image+'"></div>');
             });
                 
             $div.append('<div class="clr"></div>');
