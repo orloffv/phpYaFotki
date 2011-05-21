@@ -196,11 +196,9 @@ Class YaFotki {
             {       
                 foreach ($album['parents'] as $parent)
                 {
-                    $album['title_path'] .= $parent['title'].$this->categor_title_separator;
+                    $album['title_path'] = $parent['title'].$this->categor_title_separator.$album['title_path'];
                 }
-
-
-            }
+			}
 
             $album['title_path'] .= $album['title'];
         }
