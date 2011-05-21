@@ -19,7 +19,7 @@ if (!empty($_GET['id']))
 } 
 else 
 {
-    $json = $fotki->get_albums_with_preview('S');
+    $json = $fotki->get_albums_with_preview('S', 'name_path');
 }
 
 echo json_encode($json);

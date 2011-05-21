@@ -3,7 +3,7 @@ include('../source/YaFotki.php');
 
 $fotki = new YaFotki(array('login' => 'vitaly.orloff', 'cache' => TRUE));
 
-$albums = $fotki->get_albums();
+$albums = $fotki->get_albums('name');
 
 ?>
 

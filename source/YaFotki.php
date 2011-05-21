@@ -149,7 +149,7 @@ Class YaFotki {
      * 
      * @return array
      */
-    public function get_albums()
+    public function get_albums($sort = NULL)
     {
         $result = $this->_query($this->url . $this->login . '/albums/');
 
@@ -202,6 +202,8 @@ Class YaFotki {
 
             $album['title_path'] .= $album['title'];
         }
+        
+        $return_items = $this->_sort_albums($return_items, $sort);
         
         return $return_items;
     }
@@ -271,9 +273,9 @@ Class YaFotki {
      * @param string $preview_size
      * @return array 
      */
-    public function get_albums_with_preview($preview_size)
+    public function get_albums_with_preview($preview_size, $sort = NULL)
     {
-        $albums = $this->get_albums();
+        $albums = $this->get_albums($sort);
 
         foreach ($albums as &$album)
         {
@@ -339,5 +341,61 @@ Class YaFotki {
 
         file_put_contents($file, json_encode($save_cache_array));
     }
+    
+    /**
+     * Сортирует массив альбомов
+     *
+     * @param string $key
+     * @param mixed $value 
+     */
+    protected function _sort_albums($albums, $sort = NULL)
+    {
+    	if (is_null($sort))
+    	{
+    		$sort = 'date';
+    	}
+    	
+    	switch ($sort) {
+		    case 'date':
+		    	$result_albums = $albums;
+ 			break;
+ 			case 'name':
+				$result_albums = array();
+    	
+		    	foreach ($albums as $key => $album)
+    			{
+    				$temp_name[$key] = $album['title'];	
+		    	}
+ 				
+ 				asort($temp_name);
+ 				
+ 				foreach($temp_name as $key => $dev_null)
+ 				{
+ 					$result_albums[] = $albums[$key];
+ 				}
+ 				
+ 			break;
+ 			case 'name_path':
+				$result_albums = array();
+    	
+		    	foreach ($albums as $key => $album)
+    			{
+    				$temp_name[$key] = $album['title_path'];	
+		    	}
+ 				
+ 				asort($temp_name);
+ 				
+ 				foreach($temp_name as $key => $dev_null)
+ 				{
+ 					$result_albums[] = $albums[$key];
+ 				}
+ 				
+ 			break;
+ 			default:
+ 				$result_albums = $albums;
+ 			break;
+ 		}
 
+    	return $result_albums;
+    }
 }
