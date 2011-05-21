@@ -40,7 +40,7 @@ Class YaFotki {
      * @param int $limit
      * @return array
      */
-    protected function query($url, $limit='')
+    protected function _query($url, $limit='')
     {
         $url .= '?format=json';
 
@@ -49,13 +49,13 @@ Class YaFotki {
             $url.= '&limit=' . $limit;
         }
 
-        if (($this->cache AND ($result_json = $this->get_cache($url)) === FALSE) OR ! $this->cache)
+        if (($this->cache AND ($result_json = $this->_get_cache($url)) === FALSE) OR ! $this->cache)
         {   
             $result_json = json_decode(file_get_contents($url));
 
             if ($this->cache)
             {
-                $this->set_cache($url, $result_json);
+                $this->_set_cache($url, $result_json);
             }
         }
 
@@ -66,7 +66,7 @@ Class YaFotki {
      * Возвращаем массив с фотками
      * 
      * пример вызова:
-     * get_photos(array('XXS', 'XXL'))
+     * _get_photos(array('XXS', 'XXL'))
      * 
      * пример результата:
      * array(
@@ -83,9 +83,9 @@ Class YaFotki {
      * @param int $limit
      * @return array 
      */
-    protected function get_photos($sizes, $what = 'photos/', $limit = '')
+    protected function _get_photos($sizes, $what = 'photos/', $limit = '')
     {
-        $result = $this->query($this->url . $this->login . '/' . $what, $limit);
+        $result = $this->_query($this->url . $this->login . '/' . $what, $limit);
 
         $return_items = array();
 
@@ -116,7 +116,7 @@ Class YaFotki {
      */
     public function get_all_photos()
     {
-        return $this->get_photos($this->sizes);
+        return $this->_get_photos($this->sizes);
     }
 
     /**
@@ -127,7 +127,7 @@ Class YaFotki {
      */
     public function get_album_photos($album)
     {
-        return $this->get_photos($this->sizes, 'album/' . $album . '/photos/');
+        return $this->_get_photos($this->sizes, 'album/' . $album . '/photos/');
     }
     
     /**
@@ -151,7 +151,7 @@ Class YaFotki {
      */
     public function get_albums()
     {
-        $result = $this->query($this->url . $this->login . '/albums/');
+        $result = $this->_query($this->url . $this->login . '/albums/');
 
         $return_items = array();
             
@@ -161,13 +161,13 @@ Class YaFotki {
 
         foreach ($items as $item)
         {
-            $id_album = $this->get_album_id($item->links->alternate);
+            $id_album = $this->_get_album_id($item->links->alternate);
             
             $parent_id = 0;
             
             if (isset($item->links->album))
             {
-                $parent_id = $this->get_album_id($item->links->album);
+                $parent_id = $this->_get_album_id($item->links->album);
             }
             
             $albums_parents[$id_album] = array(
@@ -188,7 +188,7 @@ Class YaFotki {
         
         foreach($return_items as &$album)
         {
-            $album['parents'] = $this->get_parents($album['id'], $albums_parents);
+            $album['parents'] = $this->_get_parents($album['id'], $albums_parents);
             
             $album['title_path'] = '';
 
@@ -214,7 +214,7 @@ Class YaFotki {
      * @param array $albums_parents
      * @return array 
      */
-    protected function get_parents($album_id, $albums_parents)
+    protected function _get_parents($album_id, $albums_parents)
     {
         $parents = array();
         
@@ -230,7 +230,7 @@ Class YaFotki {
                             'album_id' => $albums_parents[$album_id]['parent_id'],
                             );
            
-            $parents = array_merge($parents, $this->get_parents($albums_parents[$album_id]['parent_id'], $albums_parents));
+            $parents = array_merge($parents, $this->_get_parents($albums_parents[$album_id]['parent_id'], $albums_parents));
         }
         
         return $parents;
@@ -240,12 +240,12 @@ Class YaFotki {
      * Возвращает id альбома из url
      * 
      * пример вызова:
-     * get_album_id('http://api-fotki.yandex.ru/api/users/username/album/123131/');
+     * _get_album_id('http://api-fotki.yandex.ru/api/users/username/album/123131/');
      *
      * @param string $url
      * @return int 
      */
-    protected function get_album_id($url)
+    protected function _get_album_id($url)
     {
         $id_album = NULL;
 
@@ -277,7 +277,7 @@ Class YaFotki {
 
         foreach ($albums as &$album)
         {
-            $result_photo = $this->get_photos(array($preview_size), 'album/' . $album['id'] . '/photos/', 1);
+            $result_photo = $this->_get_photos(array($preview_size), 'album/' . $album['id'] . '/photos/', 1);
 
             $album['image'] = $result_photo[0]['images'][$preview_size];
         }
@@ -292,7 +292,7 @@ Class YaFotki {
      * @param string $key
      * @return mixed bool or array 
      */
-    protected function get_cache($key)
+    protected function _get_cache($key)
     {
         $file = $this->cache_path . md5($key) . '.json';
 
@@ -323,7 +323,7 @@ Class YaFotki {
      * @param string $key
      * @param mixed $value 
      */
-    protected function set_cache($key, $value)
+    protected function _set_cache($key, $value)
     {
         $file = $this->cache_path . md5($key) . '.json';
 
