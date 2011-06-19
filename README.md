@@ -1,4 +1,4 @@
-# PHP class для работы с [Яндекс.Фотки](http://fotki.yandex.ru), version 0.1 (release)
+# PHP class для работы с [Яндекс.Фотки](http://fotki.yandex.ru), version 0.2 (release)
 
 [Демка](http://orloffv.ru/fotki/)
 
@@ -15,6 +15,7 @@
 
 прослойка кэширования
 
+возможность залогиниться и получить приватные фотографии/альбомы
 
 Пример:
 ------------
@@ -22,3 +23,6 @@
 > $fotki = new YaFotki(array('login' => 'vitaly.orloff', 'sizes' => array('XXS'), 'cache' => TRUE));
 
 > var_dump($fotki->get_albums()); 
+
+что бы залогиниться и получить приватные данные нужно в конструкторе указать пароль и параметр 'protected' - TRUE
+>$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'password' => 'my_pass', 'protected' => TRUE));

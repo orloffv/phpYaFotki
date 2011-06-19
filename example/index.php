@@ -43,7 +43,7 @@ $albums = $fotki->get_albums('name');
                             <div class="scrollWrapper"> 
                                 <div class="scrollableArea"> 		
                                     <?php foreach ($albums as $album): ?>
-                                        <li><a album_id="<?= $album['id'] ?>" id="menu_<?= $album['id'] ?>" href=#><?= $album['title_path'] ?></a></li>
+                                        <li><a album_id="<?= $album['id'] ?>" id="menu_<?= $album['id'] ?>" href="#id=<?= $album['id'] ?>"><?= $album['title_path'] ?></a></li>
                                     <?php endforeach; ?>
                                 </div> 
                             </div> 

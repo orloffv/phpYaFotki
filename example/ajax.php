@@ -2,7 +2,7 @@
 
 include('../source/YaFotki.php');
 
-$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'sizes' => array('XXS', 'XL'), 'cache' => TRUE));
+$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'sizes' => array('XXS', 'XL', 'XXXL'), 'cache' => TRUE));
 
 $json = array();
 
@@ -14,6 +14,7 @@ if (!empty($_GET['id']))
     {
         $json[$key]->image = $photo['images']['XL'];
         $json[$key]->thumb = $photo['images']['XXS'];
+        $json[$key]->big = $photo['images']['XXXL'];
         $json[$key]->title = $photo['title'];
     }
 } 

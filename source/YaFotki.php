@@ -8,6 +8,9 @@
 Class YaFotki {
 
     public $login;
+    protected $password;
+    protected $token;
+    protected $protected = FALSE;
     public $url = 'http://api-fotki.yandex.ru/api/users/';
     public $sizes = array();
     public $cache = FALSE;
@@ -21,10 +24,20 @@ Class YaFotki {
         {
             $this->sizes = $settings['sizes'];
         }
+        
+        if (isset($settings['protected']))
+        {
+            $this->protected = $settings['protected'];
+        }
 
         if (isset($settings['login']))
         {
             $this->login = $settings['login'];
+        }
+        
+        if (isset($settings['password']))
+        {
+            $this->password = $settings['password'];
         }
 
         if (isset($settings['cache']))
@@ -33,6 +46,39 @@ Class YaFotki {
         }
     }
     
+    protected function _auth()
+    {
+        $xml = $this->_query('http://auth.mobile.yandex.ru/yamrsa/key/', NULL, FALSE, 'xml', NULL, FALSE);
+        $pattern = '#<response>[\s]*?<key>(.*)</key>[\s]*?<request_id>(.*)</request_id>[\s]*?</response>#';
+        preg_match_all($pattern, $xml, $matches);
+        
+        $rsa_key = $matches[1][0];
+        $request_id = $matches[2][0];
+        
+        if ($rsa_key AND $request_id)
+        {
+            $credentials = "<credentials login=\"{$this->login}\" password=\"{$this->password}\"/>";
+            
+            $credentials = $this->_base64_rsa($rsa_key, $credentials);
+            
+            $post = "request_id={$request_id}&credentials={$credentials}";
+            
+            $token = $this->_query("http://auth.mobile.yandex.ru/yamrsa/token/", NULL, FALSE, 'xml', $post, FALSE);
+            
+            $pattern = '#<response>[\s]*?<token>(.*)</token>[\s]*?</response>#';
+            preg_match($pattern, $token, $match);
+            
+            $token = $match[1];
+            
+            if ($token)
+            {
+                $this->token = $token;
+            }
+        }
+        
+    }
+
+
     /**
      * Возвращает массив с данными после запроса к api или в кэш
      * 
@@ -40,26 +86,77 @@ Class YaFotki {
      * @param int $limit
      * @return array
      */
-    protected function _query($url, $limit='')
+    protected function _query($url, $limit = NULL, $cache = NULL, $format = 'json', $post = NULL, $protected = NULL)
     {
-        $url .= '?format=json';
-
-        if (!empty($limit))
+        if ($format == 'json')
         {
-            $url.= '&limit=' . $limit;
+            $url .= '?format=json';
         }
 
-        if (($this->cache AND ($result_json = $this->_get_cache($url)) === FALSE) OR ! $this->cache)
-        {   
-            $result_json = json_decode(file_get_contents($url));
+        if ( ! is_null($limit))
+        {
+            $url .= '&limit=' . $limit;
+        }
 
-            if ($this->cache)
+        if (is_null($cache))
+        {
+            $cache = $this->cache;
+        }
+        
+        if (($cache AND ($result = $this->_get_cache($url)) === FALSE) OR ! $cache)
+        {   
+            if (is_null($protected))
             {
-                $this->_set_cache($url, $result_json);
+                $protected = $this->protected;
+            }
+            
+            if ( ! is_null($post))
+            {
+                $context = stream_context_create(array(
+                    'http' => array(
+                        'method' => "POST",
+                        'header' => "Content-Type: application/x-www-form-urlencoded" . PHP_EOL,
+                        'content' => $post,
+                    ),
+                ));
+            }
+            elseif ($protected)
+            {
+                if ( ! $this->token)
+                {
+                    $this->_auth();
+                }
+                
+                $context = stream_context_create(array(
+                    'http' => array(
+                        'method' => "GET",
+                        'header' => "Authorization: FimpToken realm=\"fotki.yandex.ru\", token=\"{$this->token}\"",
+                    ),
+                ));
+            }
+            else
+            {
+                $context = NULL;
+            }
+            
+            $result = file_get_contents($url, NULL, $context);
+            
+            if ($format == 'json')
+            {
+                $result = json_decode($result);
+            }
+            else if ($format == 'xml')
+            {
+                
+            }
+
+            if ($cache)
+            {
+                $this->_set_cache($url, $result);
             }
         }
 
-        return $result_json;
+        return $result;
     }
     
     /**
@@ -83,7 +180,7 @@ Class YaFotki {
      * @param int $limit
      * @return array 
      */
-    protected function _get_photos($sizes, $what = 'photos/', $limit = '')
+    protected function _get_photos($sizes, $what = 'photos/', $limit = NULL)
     {
         $result = $this->_query($this->url . $this->login . '/' . $what, $limit);
 
@@ -175,7 +272,7 @@ Class YaFotki {
                 'parent_id' => $parent_id,
             );
             
-            if ( ! isset($item->protected) AND $item->imageCount)
+            if (( ! $this->protected AND ! isset($item->protected) OR $this->protected) AND $item->imageCount)
             {
 
                 $return_items[] = array(
@@ -397,5 +494,114 @@ Class YaFotki {
  		}
 
     	return $result_albums;
+    }
+    
+    /**
+     * tnx https://github.com/SilentImp/API_Yandex.Fotki_PHP_LIB/blob/SilentImp/YFSecurity.php 
+     * RSA шифрование со вкусом Яндекса
+     * Использует BCMath библиотеку
+     *
+     * @param string $key ключ шифрования
+     * @param string $data данные, которые будут зашифрованы
+     * @return string
+     * @access private
+     */	
+    protected function _base64_rsa($key, $data)
+    {
+            $buffer = array();
+            list($nstr, $estr) = explode('#', $key);
+
+            $nv = $this->_bchexdec($nstr);
+            $ev = $this->_bchexdec($estr);
+
+            $stepSize = strlen($nstr)/2 - 1;
+            $prev_crypted = array();
+            $prev_crypted = array_fill(0, $stepSize, 0);
+            $hex_out = '';
+            for($i=0; $i<strlen($data); $i++){
+                $buffer[] = ord($data{$i});
+            }
+            for($i=0; $i<(int)(((count($buffer)-1)/$stepSize)+1); $i++){
+                $tmp = array_slice($buffer, $i * $stepSize, ($i + 1) * $stepSize);
+                for ($j=0;$j<count($tmp); $j++){
+                    $tmp[$j] = ($tmp[$j] ^ $prev_crypted[$j]);
+                }				
+                $tmp = array_reverse($tmp);
+                $plain = "0";
+                $pn="0";
+                for($x = 0; $x < count($tmp); ++$x){
+                    $pow = bcpowmod(256,$x,$nv);
+                    $pow_mult = bcmul($pow,$tmp[$x]);
+                    $plain = bcadd($plain,$pow_mult);
+                }
+                $plain_pow = bcpowmod($plain, $ev, $nv);
+                $plain_pow_str = strtoupper($this->_dec2hex($plain_pow));
+                $hex_result = array();
+
+                for($k=0;$k<(strlen($nstr)-strlen($plain_pow))+ 1;$k++){
+                    $hex_result[]="";
+                }
+
+                $hex_result = implode("0",$hex_result).$plain_pow_str;
+                $min_x = min(strlen($hex_result), count($prev_crypted) * 2);
+
+                for($x=0;$x<$min_x;$x=$x+2){
+                    $prev_crypted[$x/2] = hexdec('0x'.substr($hex_result,$x,2));
+                }
+                if(count($tmp) < 16){
+                    $hex_out.= '00';
+                }
+                $hex_out.= strtoupper(dechex(count($tmp)).'00');
+                $ks = strlen($nstr) / 2;
+                if($ks<16){
+                    $hex_out.='0';
+                }
+                $hex_out.= dechex($ks).'00';
+                $hex_out.= $hex_result;
+            }
+            
+            return urlencode(base64_encode(pack("H*" , $hex_out)));
+    }
+    
+    /**
+     * tnx https://github.com/SilentImp/API_Yandex.Fotki_PHP_LIB/blob/SilentImp/YFSecurity.php 
+     * Этот метод переводит большое шестнадцатиричное число в десятичное, использует BCMath
+     * 
+     * @param string $hex очень большое шестнадцатеричное число в виде строки
+     * @return string
+     * @access private
+     */
+    protected function _bchexdec($hex)
+    {
+        $dec = 0;
+        $len = strlen($hex);
+        for ($i = 1; $i <= $len; $i++) 
+        {
+            $dec = bcadd($dec, bcmul(strval(hexdec($hex[$i - 1])), bcpow('16', strval($len - $i))));
+        }
+        
+        return $dec;
+    }
+    
+    /**
+     * tnx https://github.com/SilentImp/API_Yandex.Fotki_PHP_LIB/blob/SilentImp/YFSecurity.php
+     * Этот метод переводит большое десятичное число в шестнадцатиричное, использует BCMath
+     *
+     * @param string $number очень большое десятичное число в виде строки
+     * @return string
+     * @access private
+     */	
+    protected function _dec2hex($number)
+    {
+        $hexvalues = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
+        $hexval = '';
+        
+        while($number != '0') 
+        {
+            $hexval = $hexvalues[bcmod($number,'16')].$hexval;
+            $number = bcdiv($number,'16',0);
+        }
+        
+        return $hexval;
     }
 }

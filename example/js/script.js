@@ -66,6 +66,7 @@ function show_gallery(id, scroll)
         $('#galleria').galleria({
             data_source: data, // add the fotki.yandex data
             preload:1,
+            clicknext:true,
             extend: function() {
                 var gallery = this; // save the scope
                 $('#nav a').click(function(e) {
