@@ -1,8 +1,5 @@
 <?
-
 include('source/YaFotki.php');
 
-$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'password' => 'vampir', 'sizes' => array('XXS')));
-
-var_dump($fotki->get_albums('name'));
+var_dump(YaFotki::instance(array('login' => 'vitaly.orloff', 'password' => 'vampir', 'sizes' => array('XXS')))->get_albums('name'));
 ?>

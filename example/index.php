@@ -1,9 +1,7 @@
 <?
 include('../source/YaFotki.php');
 
-$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'cache' => TRUE));
-
-$albums = $fotki->get_albums('name');
+$albums = YaFotki::instance(array('login' => 'vitaly.orloff', 'cache' => TRUE))->get_albums('name');
 
 ?>
 

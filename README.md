@@ -24,5 +24,10 @@
 
 > var_dump($fotki->get_albums()); 
 
+или
+
+> var_dump(YaFotki::instance(array('login' => 'vitaly.orloff', 'sizes' => array('XXS'), 'cache' => TRUE))->get_albums());
+
 что бы залогиниться и получить приватные данные нужно в конструкторе указать пароль и параметр 'protected' - TRUE
->$fotki = new YaFotki(array('login' => 'vitaly.orloff', 'password' => 'my_pass', 'protected' => TRUE));
+
+> $fotki = new YaFotki(array('login' => 'vitaly.orloff', 'password' => 'my_pass', 'protected' => TRUE));

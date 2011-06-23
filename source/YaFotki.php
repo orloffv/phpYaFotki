@@ -18,7 +18,7 @@ Class YaFotki {
     public $cache_lifetime = 360000;
     public $categor_title_separator = ' / ';
 
-    function __construct($settings)
+    function __construct(array $settings)
     {
         if (isset($settings['sizes']))
         {
@@ -44,6 +44,18 @@ Class YaFotki {
         {
             $this->cache = $settings['cache'];
         }
+    }
+    
+    public static function instance(array $settings)
+    {
+        static $instance = NULL;
+        
+        if ($instance == NULL)
+        {
+            $instance = new self($settings);
+        }
+
+        return $instance;
     }
     
     protected function _auth()
