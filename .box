@@ -1,0 +1,4 @@
+shared_writable_dirs:
+    - example/cache
+    - cache
+document_root: /example
